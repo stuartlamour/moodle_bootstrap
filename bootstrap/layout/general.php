@@ -28,6 +28,8 @@ if ($hascustommenu) {
     $bodyclasses[] = 'has_custom_menu';
 }
 
+echo $OUTPUT->doctype();
+
 ?>
 
 <head>
@@ -53,6 +55,7 @@ if ($hascustommenu) {
 
 		
     <?php echo $OUTPUT->standard_head_html(); // need to split the js,css etc ?>
+
 </head>
 <body id="<?php echo $PAGE->bodyid ?>" class="<?php echo $PAGE->bodyclasses.' '.join(' ', $bodyclasses) ?> container">
 <?php echo $OUTPUT->standard_top_of_body_html(); ?>
@@ -62,7 +65,7 @@ if ($hascustommenu) {
 <?php if ($hasheading || $hasnavbar) { ?>
     <div id="page-header" class="jumbotron">    	
         <?php if ($hasheading) { ?>
-        <h1 class="headermain"><a href="<?php  global $CFG; $url = $CFG->wwwroot."/course/view.php?id=".$PAGE->course->id; echo $url; ?>"><?php echo $PAGE->heading ?></a></h1>
+        <h1 class="headermain"><a href="<?php  global $CFG; $url = $CFG->wwwroot."/course/view.php?id=".$PAGE->course->id; echo $url; ?>"><?php echo $PAGE->heading ?>bas</a></h1>
         <div class="headermenu"><?php
             if ($haslogininfo) {
                 echo $OUTPUT->login_info();
@@ -210,5 +213,9 @@ visibility:visible !important;
 	
 </div>
 <?php echo $OUTPUT->standard_end_of_body_html() ?>
+    <script type="text/javascript" src="<?php echo $CFG->wwwroot .'/theme/'.current_theme();?>/javascript/jquery.js"></script>
+    <script type="text/javascript" src="<?php echo $CFG->wwwroot .'/theme/'.current_theme();?>/javascript/bootstrap.js"></script>
+    <script type="text/javascript" src="<?php echo $CFG->wwwroot .'/theme/'.current_theme();?>/javascript/bootstrap-dropdown.js"></script>
+    <script type="text/javascript" src="<?php echo $CFG->wwwroot .'/theme/'.current_theme();?>/javascript/theme-specific.js"></script>
 </body>
 </html>
