@@ -27,8 +27,7 @@ if ($showsidepre && !$showsidepost) {
 if ($hascustommenu) {
     $bodyclasses[] = 'has_custom_menu';
 }
-
-echo $OUTPUT->doctype();
+$old =  $OUTPUT->doctype();
 
 ?>
 
@@ -65,7 +64,7 @@ echo $OUTPUT->doctype();
 <?php if ($hasheading || $hasnavbar) { ?>
     <div id="page-header" class="jumbotron">    	
         <?php if ($hasheading) { ?>
-        <h1 class="headermain"><a href="<?php  global $CFG; $url = $CFG->wwwroot."/course/view.php?id=".$PAGE->course->id; echo $url; ?>"><?php echo $PAGE->heading ?>bas</a></h1>
+        <h1 class="headermain"><a href="<?php  global $CFG; $url = $CFG->wwwroot."/course/view.php?id=".$PAGE->course->id; echo $url; ?>"><?php echo $PAGE->heading ?></a></h1>
         <div class="headermenu"><?php
             if ($haslogininfo) {
                 echo $OUTPUT->login_info();
