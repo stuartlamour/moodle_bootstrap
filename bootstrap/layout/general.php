@@ -2,7 +2,8 @@
 <html lang="en" dir="ltr">
 
 <?php
-$OUTPUT->doctype(); // needs to be called to prevent moodle echoing old doctype
+$old =  $OUTPUT->doctype(); // needs to be called to prevent moodle echoing old doctype
+
 // copied from base general.php
 $hasheading = ($PAGE->heading);
 $hasnavbar = (empty($PAGE->layout_options['nonavbar']) && $PAGE->has_navbar());
@@ -28,12 +29,10 @@ if ($showsidepre && !$showsidepost) {
 if ($hascustommenu) {
     $bodyclasses[] = 'has_custom_menu';
 }
-$old =  $OUTPUT->doctype();
-
 ?>
 
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><?php echo $PAGE->heading ?></title>
     
@@ -57,44 +56,120 @@ $old =  $OUTPUT->doctype();
     <?php echo $OUTPUT->standard_head_html(); // need to split the js,css etc ?>
 
 </head>
+
 <body id="<?php echo $PAGE->bodyid ?>" class="<?php echo $PAGE->bodyclasses.' '.join(' ', $bodyclasses) ?> container">
-<?php echo $OUTPUT->standard_top_of_body_html(); ?>
 
 
 <div id="page">
-<?php if ($hasheading || $hasnavbar) { ?>
-    <div id="page-header" class="jumbotron">    	
-        <?php if ($hasheading) { ?>
-        <h1 class="headermain"><a href="<?php  global $CFG; $url = $CFG->wwwroot."/course/view.php?id=".$PAGE->course->id; echo $url; ?>"><?php echo $PAGE->heading ?></a></h1>
-        <div class="headermenu"><?php
-            if ($haslogininfo) {
+
+<!- BEGIN PAGE HEADER -->
+<header class="navbar navbar-fixed-top">
+    <nav class="container">
+    	<div class="user_bar">
+    	<?php if ($haslogininfo) {
                 echo $OUTPUT->login_info();
             }
-            if (!empty($PAGE->layout_options['langmenu'])) {
+        ?>
+    	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+        </a>
+        </div>
+    	<div class="nav-collapse collapse">
+    		
+				<ul class="nav">
+					<li><a href="#">Courses</a></li>
+					<li><a href="#">Timetable</a></li>
+					<li><a href="#">Stuff</a></li>
+					<li><a href="#">Stuff</a></li>
+				</ul>
+			</div>
+    </nav>
+</header>
+<!-- END PAGE HEADER -->
+
+
+<!-- BEGIN MAIN -->
+<div role="main" class="container">
+
+<?php if ($hasheading || $hasnavbar) { ?>
+    <header id="page-header" class="jumbotron">    	
+        <?php if ($hasheading) { ?>
+        <h1 class="headermain"><a href="<?php  global $CFG; $url = $CFG->wwwroot."/course/view.php?id=".$PAGE->course->id; echo $url; ?>"><?php echo $PAGE->heading ?></a></h1>
+        
+        <?php if (!empty($PAGE->layout_options['langmenu'])) {
                 echo $OUTPUT->lang_menu();
             }
             echo $PAGE->headingmenu
-        ?></div><?php } ?>
-        <?php if ($hascustommenu) { ?>
-        <div id="custommenu"><?php echo $custommenu; ?></div>
-        <?php } ?>
+        ?><?php } ?>
+        
+        
         <?php if ($hasnavbar) { ?>
             <div class="navbar clearfix">
                 <div class="breadcrumb"><?php echo $OUTPUT->navbar(); ?></div>
                 <div class="navbutton"> <?php echo $PAGE->button; ?></div>
             </div>
         <?php } ?>
-    </div>
+    </header>
 <?php } ?>
-<!-- END OF HEADER -->
+
+
+          <div id="region-main-box" class="row">
+                    
+                <?php if ($hassidepre AND $hassidepost) : ?>
+                <article class="span6">
+                <?php else : ?>
+                <article class="span9">
+                <?php endif; ?>
+                	<?php echo core_renderer::MAIN_CONTENT_TOKEN ?>
+                </article>
+                
+				<?php if ($hassidepre) : ?>
+                <aside class="span3">
+                   <?php echo $OUTPUT->blocks_for_region('side-pre') ?>
+                </aside>
+                <?php endif; ?>
+                
+                <?php if ($hassidepost) : ?>                
+                <aside class="span3">
+                       <?php echo $OUTPUT->blocks_for_region('side-post') ?>
+                </aside>
+                <?php endif; ?>
+          
+        </div>
+    
+
+<!-- START OF FOOTER -->
+    <?php if ($hasfooter) { ?>
+    <footer role="contentinfo" id="page-footer">
+	<nav role="navigation">
+	 <!-- <p class="helplink"><?php echo page_doc_link(get_string('moodledocslink')) ?></p> -->
+	 Designed and built with all the love in the world la la la<br />
+	 <?php
+        echo $OUTPUT->login_info();
+        // echo $OUTPUT->home_link();
+        echo $OUTPUT->standard_footer_html();
+      ?>
+      <a href="#">Back to top</a>
+	</nav>	
+	
+	</footer>	
+	<?php } ?>			
+
+</div><!-- close container -->	
+</div><!-- close #page -->	
 <!-- silly css reset stuff that needs moving eventually..  -->
 <style>
 .block {
 	border:0;
 }
 .breadcrumb {
-	display:none;
+	visibility:hidden;
 }
+	.breadcrumb .arrow {
+		visibility:hidden;
+	}
 #page-header {
 	margin:2% 0;
 }
@@ -159,59 +234,67 @@ visibility:visible !important;
 .commands {
 	display:inline-block;
 }
+
+header.navbar {	
+  background-color: #2c2c2c;
+  background-image: -moz-linear-gradient(top, #333333, #222222);
+  background-image: -ms-linear-gradient(top, #333333, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333333), to(#222222));
+  background-image: -webkit-linear-gradient(top, #333333, #222222);
+  background-image: -o-linear-gradient(top, #333333, #222222);
+  background-image: linear-gradient(top, #333333, #222222);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#222222', GradientType=0);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.user_bar {
+	float:right;
+	line-height:3;
+}
+.logininfo {
+	display:inline-block;
+	color:#999;
+}
+	.logininfo a{
+		color:#faa732;
+	}
+
+body.container {
+	width:100%;
+	padding:0;
+	margin:0;
+	/* background:#e6eaec url(http://pea.rs/wp-content/themes/pears/css/../images/tile.png); */
+}
+
+#region-main-box {
+	
+}
+
+
+#page-header {
+	margin-top:50px;
+}
+@media (max-width: 979px) {
+	.btn-navbar,
+	.user_bar  {
+		float:none;
+		display:inline-block;
+	}
+	.user_bar {
+		width:100%;
+		text-align:right;
+	}
+	#page-header {
+		margin-top:0px;
+	}
+
+}
 </style>
 
-           <div id="region-main-box" class="row">
-                    
-                <?php if ($hassidepre AND $hassidepost) : ?>
-                <div role="main" class="span6">
-                <?php else : ?>
-                <div role="main" class="span9">
-                <?php endif; ?>
-                    <div id="region-main">
-                        <div class="region-content">
-                            <?php echo core_renderer::MAIN_CONTENT_TOKEN ?>
-                        </div>
-                    </div>
-                </div>
-                
-				<?php if ($hassidepre) : ?>
-                <aside class="span3">
-                    <div class="region-content">
-                        <?php echo $OUTPUT->blocks_for_region('side-pre') ?>
-                    </div>
-                </aside>
-                <?php endif; ?>
-                
-                <?php if ($hassidepost) : ?>                
-                <aside class="span3">
-                    <div class="region-content">
-                        <?php echo $OUTPUT->blocks_for_region('side-post') ?>
-                    </div>
-                </aside>
-                <?php endif; ?>
-          
-        </div>
-    
-
-<!-- START OF FOOTER -->
-    <?php if ($hasfooter) { ?>
-    <footer role="contentinfo" id="page-footer">
-	<nav role="navigation">
-	 <!-- <p class="helplink"><?php echo page_doc_link(get_string('moodledocslink')) ?></p> -->
-	 Designed and built with all the love in the world la la la<br />
-	 <?php
-        echo $OUTPUT->login_info();
-        // echo $OUTPUT->home_link();
-        echo $OUTPUT->standard_footer_html();
-      ?>
-      <a href="#">Back to top</a>
-	</nav>	
-	
-	</footer>	
-	<?php } ?>			
-	
-</div>
+<?php echo $OUTPUT->standard_top_of_body_html(); ?> 
 <?php echo $OUTPUT->standard_end_of_body_html() ?>
     <script type="text/javascript" src="<?php echo $CFG->wwwroot .'/theme/'.current_theme();?>/javascript/jquery.js"></script>
     <script type="text/javascript" src="<?php echo $CFG->wwwroot .'/theme/'.current_theme();?>/javascript/bootstrap.js"></script>
