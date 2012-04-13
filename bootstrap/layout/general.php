@@ -1,7 +1,8 @@
-<!doctype html public> <!-- why is there another doctype above this moodle? hum? -->
+<!doctype html public>
 <html lang="en" dir="ltr">
 
 <?php
+$OUTPUT->doctype(); // needs to be called to prevent moodle echoing old doctype
 // copied from base general.php
 $hasheading = ($PAGE->heading);
 $hasnavbar = (empty($PAGE->layout_options['nonavbar']) && $PAGE->has_navbar());
