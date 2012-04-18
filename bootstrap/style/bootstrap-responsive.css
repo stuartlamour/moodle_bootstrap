@@ -387,7 +387,7 @@
   .btn-navbar {
     display: block;
   }
-  .nav-collapse {
+  .nav-collapse.collapse {
     overflow: hidden;
     height: 0;
   }

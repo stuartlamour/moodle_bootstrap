@@ -7,7 +7,7 @@
 
 $THEME->name = 'bootstrap';
 
-$THEME->sheets = array('bootstrap','bootstrap_buttons','bootstrap-responsive');
+$THEME->sheets = array('bootstrap_buttons','bootstrap','bootstrap-responsive');
 /// This variable is an array containing the names of all the
 /// stylesheet files you want included in this theme, and in what order
 ////////////////////////////////////////////////////////////////////////////////
@@ -146,3 +146,4 @@ $THEME->editor_sheets = array('editor');
 
 // RENDER FACTORY
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
+?>
