@@ -7,7 +7,7 @@
 
 $THEME->name = 'bootstrap';
 
-$THEME->sheets = array('bootstrap_buttons','bootstrap','bootstrap-responsive');
+$THEME->sheets = array('bootstrap_buttons','bootstrap','bootstrap-responsive','bootstrap_custom');
 /// This variable is an array containing the names of all the
 /// stylesheet files you want included in this theme, and in what order
 ////////////////////////////////////////////////////////////////////////////////

@@ -14,6 +14,7 @@ $showsidepre = ($hassidepre && !$PAGE->blocks->region_completely_docked('side-pr
 $showsidepost = ($hassidepost && !$PAGE->blocks->region_completely_docked('side-post', $OUTPUT));
 $custommenu = $OUTPUT->custom_menu();
 $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custommenu));
+$haslogininfo =  (isguestuser() or isloggedin());
 
 $bodyclasses = array();
 if ($showsidepre && !$showsidepost) {
