@@ -64,6 +64,11 @@ class theme_bootstrap_core_renderer extends core_renderer {
 		// Return the sub menu
 		return $content;
 	}
+	
+    public function pix_icon($pix, $alt, $component='moodle', array $attributes = null) {
+        $icon = new pix_icon($pix, $alt, $component, $attributes);
+        return $this->render($icon . '.');
+    }
  		
 }
 ?>
