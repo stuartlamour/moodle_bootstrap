@@ -54,36 +54,16 @@ if ($hascustommenu) {
 </head>
 
 
-<!- BODY -->
+
 <body id="<?php echo $PAGE->bodyid ?>" class="<?php echo $PAGE->bodyclasses.' '.join(' ', $bodyclasses) ?> container">
 <div id="page">
 
 
 
-<!- SITE HEADER -->
-<header class="navbar navbar-fixed-top">
-    <nav class="container">
-    	<div class="user_bar">
-    	<?php if ($haslogininfo) {
-                echo $OUTPUT->login_info();
-            }
-        ?>
-    	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            	<span class="icon-bar"></span>
-            	<span class="icon-bar"></span>
-            	<span class="icon-bar"></span>
-        </a>
-        </div>
-    	<div class="nav-collapse collapse">
-    			<ul class="nav">
-					<li><a href="#">Courses</a></li>
-					<li><a href="#">Timetable</a></li>
-					<li><a href="#">Stuff</a></li>
-					<li><a href="#">Stuff</a></li>
-				</ul>
-			</div>
-    </nav>
-</header>
+
+<?php if ($hascustommenu) { ?>
+<?php echo $custommenu; ?>
+<?php } ?>
 <!-- END SITE HEADER -->
 
 
@@ -106,7 +86,7 @@ if ($hascustommenu) {
         
         
         <?php if ($hasnavbar) { ?>
-            <div class="navbar clearfix">
+            <div class="navbar stickynav clearfix">
                 <div class="breadcrumb"><?php echo $OUTPUT->navbar(); ?></div>
                 <div class="navbutton"> <?php echo $PAGE->button; ?></div>
             </div>

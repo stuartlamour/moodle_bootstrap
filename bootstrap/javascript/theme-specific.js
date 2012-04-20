@@ -2,18 +2,18 @@ $(document).ready(function() {
 	$('.dropdown-toggle').dropdown();
 	$(document).scroll(function(){
 	    // If has not activated (has no attribute "data-top"
-	    if (!$('.subnav').attr('data-top')) {
+	    if (!$('.stickynav').attr('data-top')) {
 	        // If already fixed, then do nothing
-	        if ($('.subnav').hasClass('subnav-fixed')) return;
+	        if ($('.stickynav').hasClass('breadcrumb-fixed-top')) return;
 	        // Remember top position
-	        var offset = $('.subnav').offset()
-	        $('.subnav').attr('data-top', offset.top);
+	        var offset = $('.stickynav').offset()
+	        $('.stickynav').attr('data-top', offset.top);
 	    }
 
-	    if ($('.subnav').attr('data-top') - $('.subnav').outerHeight() <= $(this).scrollTop())
-	        $('.subnav').addClass('subnav-fixed');
+	    if ($('.stickynav').attr('data-top') - $('.stickynav').outerHeight() <= $(this).scrollTop())
+	        $('.stickynav').addClass('breadcrumb-fixed-top');
 	    else
-	        $('.subnav').removeClass('subnav-fixed');
+	        $('.stickynav').removeClass('breadcrumb-fixed-top');
 	});
 
 	

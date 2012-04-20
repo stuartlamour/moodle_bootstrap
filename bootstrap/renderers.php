@@ -13,13 +13,19 @@ class theme_bootstrap_core_renderer extends core_renderer {
 			return '';
 		}
 		// Initialise this custom menu
-		$content = html_writer::start_tag('ul', array('class'=>'nav nav-pills'));
+		$content = html_writer::start_tag('div',array('class'=>"navbar navbar-fixed-top"));
+		$content .= html_writer::start_tag('div',array('class'=>"navbar-inner"));
+		$content .= html_writer::start_tag('div',array('class'=>"container"));
+		$content .= html_writer::start_tag('ul', array('class'=>'nav'));
 		// Render each child
 		foreach ($menu->get_children() as $item) {
 			$content .= $this->render_custom_menu_item($item);
 		}
 		// Close the open tags
 		$content .= html_writer::end_tag('ul');
+		$content .= html_writer::end_tag('div');
+		$content .= html_writer::end_tag('div');
+		$content .= html_writer::end_tag('div');
 		// Return the custom menu
 		return $content;
 	}
@@ -65,10 +71,27 @@ class theme_bootstrap_core_renderer extends core_renderer {
 		return $content;
 	}
 	
-    public function pix_icon($pix, $alt, $component='moodle', array $attributes = null) {
-        $icon = new pix_icon($pix, $alt, $component, $attributes);
-        return $this->render($icon . '.');
+    protected function render_pix_icon(pix_icon $icon) {
+        $attributes = $icon->attributes;
+        $attributes['src'] = $this->pix_url($icon->pix, $icon->component);
+        $iconset = array('i/edit' => 'icon-pencil',
+        'i/settings' => 'icon-list-alt',
+        'i/group' => 'icon-user',
+        'i/backup' => 'icon-cog',
+        'i/restore' => 'icon-cog',
+        'i/navigationitem' => 'icon-chevron-right');
+        
+        
+        if (isset($iconset[$icon->pix])) {
+            return '<div class = "'.$iconset[$icon->pix].' bootstrapicon"></div>';
+        } else {
+            //debug: return html_writer::empty_tag('img', $attributes) . $icon->pix;
+            return html_writer::empty_tag('img', $attributes) . $icon->pix;
+        }
+        
+        
     }
+    
  		
 }
 ?>

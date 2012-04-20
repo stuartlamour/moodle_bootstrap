@@ -135,8 +135,10 @@ $THEME->hidefromselector = false;
 
 /** List of javascript files that need to included on each page */
 $THEME->javascripts = array();
+
 $THEME->javascripts_footer = array();
 
+$THEME->rarrow = '&nbsp;/ ';
 
 $THEME->enable_dock = true;
 //$THEME->javascripts_footer = array('navigation');
