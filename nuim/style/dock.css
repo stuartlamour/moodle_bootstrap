@@ -1,0 +1,120 @@
+body.has_dock {
+	margin-left: 0px;
+}
+
+/** For the dock itself */
+#dock {
+	width: 40px;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	background-color: none;
+	border-right: 1px solid [[settings:blockshade]];
+	z-index: 11000;
+	background-color: transparent;
+}
+
+#dock.nothingdocked {
+	visibility: hidden;
+	display: none;
+}
+
+#dock .dockeditem .firstdockitem {
+	margin-top: 1em;
+}
+
+#dock .dockedtitle {
+	border-bottom: 1px solid [[settings:blockshade]];
+	border-top: 1px solid [[settings:blockshade]];
+	cursor: pointer;
+}
+
+
+
+
+#dock .controls {
+	position: absolute;
+	bottom: 1em;
+	text-align: center;
+	width: 100%;
+}
+
+#dock .controls img {
+	cursor: pointer;
+}
+
+/** For the panel the docked blocks are shown in */
+#dockeditempanel {
+	min-width: 200px;
+	position: relative;
+	z-index: 12000;
+	left: 100%;
+	margin-left:6px;
+}
+
+#dockeditempanel.dockitempanel_hidden {
+	display: none;
+}
+
+#dockeditempanel .dockeditempanel_content {
+	background-color: [[settings:blockbackground]];
+	border: 1px solid [[settings:blockshade]];
+	z-index: 12050;
+}
+
+
+
+#dockeditempanel .dockeditempanel_bd .block_docked {
+	margin: 10px;
+}
+
+#dockeditempanel .dockeditempanel_hd {
+	border-bottom: 1px solid [[settings:blockshade]];
+	text-align: right;
+}
+
+#dockeditempanel .dockeditempanel_hd h2 {
+	display: inline;
+	margin: 0;
+	padding-right: 1em;
+}
+
+#dockeditempanel .dockeditempanel_hd .commands {
+	display: inline;
+}
+
+#dockeditempanel .dockeditempanel_hd .commands img {
+	margin-right: 2px;
+	vertical-align: middle;
+}
+
+body.has_dock {
+	margin-left: 0px;
+}
+
+#dock {
+	border-right: none;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 59px;
+	width: 40px;
+	z-index: 11000;
+}
+
+.dockeditem_container .dockeditem {
+	background-color: [[settings:blockbackground]];
+	box-shadow: 0 0 25px [[settings:blockshade]]     inset;
+	width: 40px;
+	border-radius: 0 4px 4px 0;
+	margin-bottom: 10px;
+}
+
+.dockeditem_container {
+	margin-right: 10px;
+}
+
+#dock .dockedtitle h2 {
+	margin-top: 10px;
+}
