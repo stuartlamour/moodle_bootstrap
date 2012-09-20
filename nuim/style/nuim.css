@@ -26,6 +26,10 @@ body {
 	(startColorstr = '[[settings:pastelcolor]]', endColorstr =   '#ffffff', GradientType = 0 );
 }
 
+.side-pre-only #page-content #region-main-box #region-post-box #region-main-wrap #region-main {
+    padding-right: 15px;
+}
+
 body#page-login-index {
 	background-color: #000;
 	background-color: [[setting:loginbgcolor]];
@@ -120,7 +124,7 @@ div.block {
 	display: none;
 }
 
-#nuimnews .orbit-wrapper .forumpost {
+#nuimnews .orbit-wrapper .forumpost  {
 	display: visible;
 	background-color: [[settings:blockbackground]];
 	border: 0px;
@@ -129,6 +133,32 @@ div.block {
     margin-right: 30px;
 	overflow: hidden;
 	width: 90%;
+	border-radius: 4px 4px 4px 4px;
+}
+
+#page-mod-forum-discuss  .forumpost { 
+	display: block; 
+	background: #f4f4f4; 
+	padding: 7px 10px; 
+	border: 1px solid #ddd;  
+	overflow: hidden; 
+	background-repeat: repeat;
+	-webkit-border-bottom-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-radius-bottomright: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+#page-mod-forum-discuss .header {
+	background-color: [[settings:blockbackground]];
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
 }
 
 #nuimnews .forumpost {
@@ -141,7 +171,7 @@ div.block {
 }
 
 
-#nuimnews .forumpost .subject {
+#nuimnews .forumpost .subject  {
 	font-size: 2em;
 	color: [[settings:headingcolor]];
 	font-weight: bold;

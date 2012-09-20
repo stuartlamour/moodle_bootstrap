@@ -258,20 +258,21 @@ input[type="submit"].showadvancedbtn:active,
   background-color: #bd362f;
   background-image:none;
 }
-.btn-danger:active, .btn-danger.active, #yui-gen18-button {
-  background-color: #942a25 \9;
+
+.yui-skin-sam .yui-dialog .ft span.default button {
+    color: #000;
 }
 
-
-
+.yui-skin-sam .yui-dialog .ft span.default {
+	background: none;
+}
 
 .btn-success,
 #adminsettings input[type="submit"],
 #id_submitbutton,
 #id_submitbutton2,
 input[type="button"].fm-btn-mkdir,
-input[type="button"].fm-btn-add,
-.yui-skin-sam .yui-dialog .ft span.default button {
+input[type="button"].fm-btn-add {
   background-color: #5bb75b;
   background-image: -moz-linear-gradient(top, #62c462, #51a351);
   background-image: -ms-linear-gradient(top, #62c462, #51a351);

@@ -120,6 +120,7 @@
 #custommenu li {
 	float: left;
 	position: relative;
+	z-index:999;
 }
 
 #custommenu ul ul li {
